@@ -1,23 +1,14 @@
-case = int(input())
+testCase = int(input())
 
-DB = []
+DB = [] # 학생수, 점수 데이터
 
-for _ in range(case) :
-    data = input().split()
-    DB.append([int(d) for d in data])
+for _ in range(testCase) :
+    DB.append(list(map(int,input().split())))
 
-for r in range(case):
-    # 평균 초과 인원 수
-    count = 0
+for k in range(testCase) :
+    upper = 0
+    avg = (sum(DB[k][1:])/DB[k][0])
+    for j in DB[k][1::1] :
+        if j > avg : upper += 1
 
-    avg = sum(s for s in DB[r][1:])/(len(DB[r])-1)
-
-    # 평균이상 학생만 계산
-    for n in range(1, len(DB[r])) :
-        if DB[r][n] > avg : count += 1
-
-    # 평균 이상인 학생의 비율
-    rate = count/(len(DB[r])-1) * 100
-    print("{:.3f}".format(rate, 3),end="%\n")
-
-    # 실수와 문자 % 사이의 간격이 없음에 유의할 것
+    print("{:.3f}".format((upper/DB[k][0])*100)+'%')

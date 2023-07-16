@@ -67,11 +67,5 @@ def solution(w) :
         # 최종 문자열 반환
         return tmp + u
     
-try:
-    string = input()
-except EOFError:
-    # 입력이 없는 경우에 대한 처리
-    string = ''
-    
-print(solution(string))
+
 

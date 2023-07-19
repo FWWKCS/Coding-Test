@@ -1,3 +1,5 @@
+# 알고리즘 참조 https://korean-otter.tistory.com/92
+
 import sys
 input = sys.stdin.readline
 

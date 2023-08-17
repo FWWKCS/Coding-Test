@@ -1,6 +1,3 @@
-values = input()
-values = values.split()
-a = int(values[0])
-b = int(values[1])
+a, b = map(int, input().split())
 
 print(a+b)

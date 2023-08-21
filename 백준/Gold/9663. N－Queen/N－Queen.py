@@ -2,14 +2,14 @@ import sys
 sys.setrecursionlimit(10000)
 
 def setQueen(R) :
-    global board, queens, C
+    global queens, C
     
     # 대각선으로 충돌 확인
     if len(queens) > 1 :
         for i in range(len(queens)-1) :
             # 한 퀸으로부터 (+k, +-k) 만큼 떨어져있다면 충돌, return
 
-            # 새로 투입된 퀸만이 조건을 만족하고 들어온 이전 퀸들과만 비교하여 충돌하는지 판별하여 연산 단축
+            # 새로 투입된 퀸만이 조건을 만족하고 들어온 이전 퀸들과만 비교하여 충돌하는지 판별하여 연산 최적화
             k = queens[-1][0]-queens[i][0] # k > 0
 
             if queens[i][1] + k == queens[-1][1] or queens[i][1] - k == queens[-1][1] : return
@@ -34,8 +34,6 @@ def setQueen(R) :
 
 
 N = int(input())
-
-board = [[False for _ in range(N)] for _ in range(N)]
 
 setCase = 0 # 출력값
 queens = [] # (r0, c0), (r1, c1), ...

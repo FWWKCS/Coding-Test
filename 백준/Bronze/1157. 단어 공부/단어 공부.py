@@ -1,21 +1,25 @@
-input = input()
+import sys
+input = sys.stdin.readline
 
-foundAry = [[],[]] # [문자 종류],[각 문자 카운트]
+value = input().rstrip()
+count = [0 for _ in range(26)]
 
-for ch in input:
-    if ch in foundAry[0] or ch.lower() in foundAry[0] : continue
-    foundAry[0].append(ch.lower())
-    foundAry[1].append(0)
+for v in value :
+    if ord(v) > 90 : # 소문자인 경우
+        count[ord(v)-97] += 1
+    elif ord(v) <= 90 : # 대문자인 경우
+        count[ord(v)-65] += 1
 
+maxCount = max(count)
+index = 0 # 가장 많이 사용된 문자 인덱스
+found = False
 
-for ch in input:
-    index = foundAry[0].index(ch.lower())
-    foundAry[1][index] += 1
+for k in range(26) :
+    if not found and count[k] == maxCount :
+        found = True
+        index = k
+    elif found and count[k] == maxCount :
+        print('?')
+        sys.exit()
 
-maxIndex = []
-for t in foundAry[1]:
-    if t == max(foundAry[1]) :
-        maxIndex.append(foundAry[1].index(t))
-
-if len(maxIndex) != 1 : print("?")
-else : print(foundAry[0][maxIndex[0]].upper())
+if found : print(chr(index+65))     

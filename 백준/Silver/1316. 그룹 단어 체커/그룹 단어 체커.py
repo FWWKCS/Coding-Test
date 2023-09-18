@@ -1,22 +1,26 @@
-def checkGrouped(word):
-    # 각 같은 문자가 확인되면 
-    checked = []
-    checked.append(word[0])
-    for w in range(1,len(word)):
-        if word[w] not in checked : checked.append(word[w])
-        elif word[w] in checked and word[w] == word[w-1] : continue
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+words = [input().rstrip() for _ in range(n)]
+
+groupedWords = 0 # 출력값
+
+for word in words :
+    grouped = True
+    pre = ''
+    current = ''
+    visited = set() # 접한 문자
+    # 최근에 접한 문자가 현재 문자와 다르면서 방문기록이 없어야 타당함
+    for l in word :
+        current = l
+        if current != pre and current in visited : 
+            grouped = False
         else : 
-            # print(f"{word}의 {word[w]}에서 그룹 단어가 아님을 검출했습니다")
-            return False
+            visited.add(l)
+            pre = l
+        
+    if not grouped : continue
+    else : groupedWords += 1
 
-    return True
-
-count = int(input())
-
-groupWords = 0
-for _ in range(count):
-    word = input()
-    grouped = checkGrouped(word)
-    if grouped == True : groupWords += 1
-
-print(groupWords)
+print(groupedWords)

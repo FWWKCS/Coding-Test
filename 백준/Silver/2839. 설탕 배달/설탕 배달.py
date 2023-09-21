@@ -1,17 +1,17 @@
-def cal_sugar(ROW, COL) :
-    for r in range(ROW):
-        for c in range(COL):
-            Table[r][c] = r*3 + c*5
-            if Table[r][c] == sugar : return r+c
-            
+def find_sugar() :
+    for r in range(len(dp)) :
+        for c in range(len(dp[r])) :
+            dp[r][c] = 3*r + 5*c
+            if dp[r][c] == N :
+                return r+c
+    
     return -1
 
+N = int(input())
 
-sugar = int(input())
+ROW = (N // 3) + 1
+COL = (N // 5) + 1
 
-ROW = sugar // 3 + 1
-COL = sugar // 5 + 1
+dp = [[0 for _ in range(COL)] for _ in range(ROW)]
 
-Table = [[0 for _ in range(COL+1)] for _ in range(ROW+1)]
-
-print(cal_sugar(ROW,COL))
+print(find_sugar())

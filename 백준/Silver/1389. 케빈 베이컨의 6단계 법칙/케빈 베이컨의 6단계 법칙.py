@@ -1,9 +1,8 @@
-import collections
 import sys
 input = sys.stdin.readline
 
 N, M = map(int, input().split())
-graph = [[-1 for _ in range(N)] for _ in range(N)]
+graph = [[float("inf") for _ in range(N)] for _ in range(N)]
 for d in range(N) : # 대각영역은 자기자신(0)
     graph[d][d] = 0
 
@@ -13,33 +12,18 @@ for _ in range(M) :
     graph[end-1][start-1] = 1
 
 # 각 노드의 인접단계 탐색
+# 플로이드 워셜 알고리즘
 for k in range(N) :
-    if -1 in graph[k] : # 아직 탐색되지않은 부분이 있으면
-        # 그래프 깊이우선 탐색
-        main = k+1
-        depth = 0 # 단계
-        visited = set() # 방문한 노드, 자신부터 시작
-        queue = collections.deque([(main, depth)]) 
-        while queue :
-            current, depth = queue.popleft()
-            visited.add(current)
+    # r에서 c로 이동하면서, k+1 노드를 거쳐가거나 다이렉트로 갈 수 있을때의 최단거리
+    for r in range(N) :
+        if r == k : continue
+        for c in range(N) : 
+            if r == c or c == k : continue
 
-            # 그래프 채우기
-            if graph[k][current-1] == -1 : 
-                graph[k][current-1] = depth
-                graph[current-1][k] = depth
-
-            # 그래프를 다 채운 후 모두 방문하면 종료
-            if len(visited) == N : break
-
-            target = -1
-            for i in range(N) :
-                if graph[current-1][i] == 1 and i+1 not in visited : # 방문하지 않은 곳이면
-                    target = i # 다음 시작점으로 지정
-                    queue.append((target+1, depth+1))
+            graph[r][c] = min(graph[r][c], graph[r][k] + graph[k][c])
 
 low_bacon_node = 0 # 출력할 노드
-low_bacon = sys.maxsize
+low_bacon = float("inf")
 
 for g in range(N) :
     if sum(graph[g]) < low_bacon :

@@ -3,7 +3,7 @@ pendulum = list(map(int, input().split()))
 count = int(input())
 marble = list(map(int, input().split()))
 
-possibility = [[False for _ in range(40001)] for _ in range(N)]
+possibility = [[False for _ in range(15001)] for _ in range(N)]
 # possibility[r][c]: r번째 추까지 사용할 때 측정 가능한 무게가 c
 
 for r in range(N):
@@ -21,7 +21,7 @@ for r in range(N):
             possibility[r][c] = True
 
         # r-1번 추까지 사용한 기록중 r번 추에서 찾을 무게 c와 더한 무게는 판별 가능하다
-        elif r > 0 and pendulum[r]+c < 40001 and possibility[r-1][pendulum[r]+c]:
+        elif r > 0 and pendulum[r]+c < 15001 and possibility[r-1][pendulum[r]+c]:
             possibility[r][c] = True
         
         # r-1번 추까지 사용한 기록이 판별 가능하면 r번 추까지의 경우에도 판별 가능하다 
@@ -29,6 +29,11 @@ for r in range(N):
         elif r > 0 and possibility[r-1][c]:
             possibility[r][c] = True
 
+
 for m in marble:
+    if m > 15000: 
+        print('N', end = ' ')
+        continue
+
     if possibility[-1][m]: print('Y', end = ' ')
     else: print('N', end = ' ')

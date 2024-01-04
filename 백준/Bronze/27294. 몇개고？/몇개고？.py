@@ -1,0 +1,5 @@
+T, S = map(int, input().split())
+if S == 1: print(280)
+elif T <= 11: print(280)
+elif T >= 17: print(280)
+elif 12 <= T and T <= 16 and S == 0: print(320) 

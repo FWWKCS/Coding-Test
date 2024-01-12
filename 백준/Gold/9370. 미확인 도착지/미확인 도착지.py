@@ -22,8 +22,6 @@ def dijkstra(start, except_v):
                     heappush(heap, (distance[target], target))
     
     return distance
-    
-
 
 T = int(input())
 for _ in range(T):
@@ -49,8 +47,6 @@ for _ in range(T):
 
     # 교차로 무관 최소거리 계산
     origin = dijkstra(s, set()) 
-    # print(origin)
-
 
     # 교차로를 거쳤을 때 받은 최단거리와 같으면 가능한 목적지
     # case 1) s -> g -> h -> 후보 정점
@@ -71,19 +67,10 @@ for _ in range(T):
     # g -> 후보 정점
     C2 = dijkstra(g, {s, h})
 
-    # print(f's -> g: {A1}')
-    # print(f'g -> h: {B}')
-    # print(f'h -> t: {C1}')
-
-    # print(f's -> h: {A2}')
-    # print(f'h -> g: {B}')
-    # print(f'g -> t: {C2}')
-
-
     for p in predict:
         case1 = A1[g] + B[h] + C1[p]
         case2 = A2[h] + B[h] + C2[p]
-        # print(case1, case2)
+        
         if origin[p] == min(case1, case2):
             possible.append(p)
     

@@ -1,5 +1,3 @@
-from collections import deque
-
 N, S = map(int, input().split())
 sequence = list(map(int, input().split()))
 
@@ -55,7 +53,8 @@ w2 = sequence[(N//2):]
 left = dfs([], w1, 0, 0)
 right = sorted(dfs([], w2, 0, 0))
 
-count = 0 # left에서 0을 선택하면, right에서 0을 찾는 경우 1가지를 미리 제외
+count = 0 
+# left에서 0을 선택하면, right에서 0을 찾는 경우 1가지를 미리 제외
 if S == 0: count -= 1
 
 for i in range(len(left)): 

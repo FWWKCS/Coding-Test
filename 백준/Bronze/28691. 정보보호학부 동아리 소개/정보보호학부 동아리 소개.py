@@ -1,0 +1,6 @@
+initial = input()
+if initial == 'M': print('MatKor')
+elif initial == 'C': print('CyKor')
+elif initial == 'W': print('WiCys')
+elif initial == 'A': print('AlKor')
+else: print('$clear')

@@ -1,0 +1,5 @@
+N = int(input())
+value = sum(list(map(int, input().split())))
+if value < 0 : print('Left')
+elif value > 0 : print('Right')
+else: print('Stay')

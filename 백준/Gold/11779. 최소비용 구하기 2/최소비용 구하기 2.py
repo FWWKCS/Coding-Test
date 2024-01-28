@@ -3,18 +3,16 @@ import sys
 input = sys.stdin.readline
 
 def dijkstra(s, dist, trace, graph):
-    heap = [(s, 0)] # [ (출발 노드, 현재 거리)]
+    heap = [(0, s)] # [ (출발 노드, 현재 거리)]
     visited = set()
-
     while heap:
-        current, weight = heappop(heap)
+        weight, current = heappop(heap)
         visited.add(current)
-
         if current not in graph: continue
 
         for e, k in list(graph[current]):
-            if weight + k < dist[e]:
-                heappush(heap, (e, weight+k))
+            if e not in visited and weight + k < dist[e]:
+                heappush(heap, (weight+k, e))
                 dist[e] = weight + k
                 trace[e] = current
 

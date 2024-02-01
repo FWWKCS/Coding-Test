@@ -8,13 +8,13 @@ while True:
     if n == 0 and m == 0: break
 
     graph = { 
-        # 시작 정점 : { 도착 정점 }
+        # 시작 정점 : [ 도착 정점 ]
     }
-    for i in range(1,n+1): graph[i] = set()
+    for i in range(1,n+1): graph[i] = []
     for _ in range(m):
         a, b = map(int, input().split())
-        graph[a].add(b)
-        graph[b].add(a)
+        graph[a].append(b)
+        graph[b].append(a)
 
     processed = set()
     T = 0
@@ -30,7 +30,7 @@ while True:
             processed.add(current)
             E += len(graph[current])
 
-            for k in list(graph[current]):
+            for k in graph[current]:
                 if k not in visited:
                     queue.append(k)
 

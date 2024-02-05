@@ -2,6 +2,10 @@ from decimal import Decimal
 import sys
 input = sys.stdin.readline
 
+def get_dist(a, b):
+    d = (a[0]-b[0])**Decimal('2') + (a[1]-b[1])**Decimal('2')
+    return d ** Decimal('0.5')
+
 def find_parent(x):
     if x == idx_pointer[x]: return x
 
@@ -28,7 +32,7 @@ idx_pointer = [i for i in range(N)]
 edges = []
 for i in range(N-1):
     for j in range(i+1, N):
-        d = ((pos[i][0]-pos[j][0])**Decimal('2') + (pos[i][1]-pos[j][1])**Decimal('2')).sqrt()
+        d = get_dist(pos[i], pos[j])
         edges.append((d, i, j))
 
 edges.sort(key = lambda x: x[0])

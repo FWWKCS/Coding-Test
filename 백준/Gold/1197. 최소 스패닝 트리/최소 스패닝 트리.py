@@ -1,4 +1,3 @@
-from heapq import heappush, heappop
 import sys
 sys.setrecursionlimit(100000)
 input = sys.stdin.readline
@@ -25,14 +24,15 @@ def is_union(a, b):
 
 V, E = map(int, input().split())
 pointer = [i for i in range(V+1)]
-heap = []
+edge = []
 total = 0
 for _ in range(E):
     A, B, C = map(int, input().split())
-    heappush(heap, (C, A, B))
+    edge.append((C, A, B))
 
-while heap:
-    w, a, b = heappop(heap)
+edge.sort()
+
+for w, a, b in edge:
     if is_union(a, b): continue
 
     union(a, b)

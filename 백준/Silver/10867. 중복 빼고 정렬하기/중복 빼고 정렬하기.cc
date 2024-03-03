@@ -9,12 +9,11 @@ int main() {
     int N; cin >> N;
     int value;
     set<int> S;
-    vector<int> list;
-
+    
     for (int i = 0; i < N; i++) {
         cin >> value;
         S.insert(value);
     }
 
-    for (auto it = S.begin(); it != S.end(); it++) cout << *it << ' ';
+    for (auto i : S) cout << i << ' ';
 }

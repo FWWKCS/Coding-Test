@@ -13,21 +13,16 @@ int main() {
     }
 
     b = "";
-    string o = "";
-    string tmp = "";
     for (int i = 0; i < bin.size(); i++) b += bin[i];
 
-    for (int i = 0; i < b.length() / 3; i++) {
-        tmp = b.substr(i*3, 3);
-        if (tmp == "000") o += '0';
-        else if (tmp == "001") o += '1';
-        else if (tmp == "010") o += '2';
-        else if (tmp == "011") o += '3';
-        else if (tmp == "100") o += '4';
-        else if (tmp == "101") o += '5';
-        else if (tmp == "110") o += '6';
-        else o += '7';
+    stack<int> oct;
+    for (int i = b.length()-1; i >= 0; i-=3) {
+        int tmp = b[i] - '0';
+        tmp += 2 * (b[i-1] - '0');
+        tmp += 4 * (b[i-2] - '0');
+
+        oct.push(tmp);
     }
     
-    cout << o;
+    while (!oct.empty()) cout << oct.top(), oct.pop();
 }

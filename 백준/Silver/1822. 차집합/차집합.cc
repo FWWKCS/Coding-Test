@@ -5,12 +5,11 @@ int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-    
+
     int nA, nB;
     cin >> nA >> nB;
 
     set<int> A;
-    set<int> B;
 
     int x;
     for (int i = 0; i < nA; i++) {
@@ -20,16 +19,11 @@ int main() {
 
     for (int i = 0; i < nB; i++) {
         cin >> x;
-        B.insert(x);
+        if (A.find(x) != A.end()) A.erase(x);
     }
 
-    set<int> C;
-
-    set_difference(A.begin(), A.end(), B.begin(), B.end(), inserter(C, C.begin()));
-
-    if (C.empty()) cout << 0;
-    else {
-        cout << C.size() << '\n';   
-        for (auto x : C) cout << x << ' ';
+    cout << A.size() << '\n';
+    if (A.size() != 0) {
+        for (auto e : A) cout << e << ' ';
     }
 }

@@ -2,18 +2,10 @@
 #include <queue>
 using namespace std;
 
-struct p {
-    int absV;
-    int realV;
-
-    // 생성자
-    p(int a, int r) : absV(a), realV(r) {}
-};
-
 struct compare {
-    bool operator() (p a, p b) {
-        if (a.absV != b.absV) return a.absV > b.absV;
-        return a.realV > b.realV;
+    bool operator() (pair<int, int>& a, pair<int, int>& b) {
+        if (a.first != b.first) return a.first > b.first;
+        return a.second > b.second;
     }
 };
 
@@ -24,15 +16,14 @@ int main() {
 
     int N; cin >> N;
     int x;
-    priority_queue<p, vector<p>, compare> heap;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, compare> heap;
 
     for (int i = 0; i < N; i++) {
         cin >> x;
-        if (x != 0) heap.push(p(abs(x), x));
-        else if (x == 0 && heap.empty()) cout << 0 << '\n';
+        if (x != 0) heap.push(make_pair(abs(x), x));
+        else if (x == 0 && heap.empty()) cout << "0\n";
         else {
-            p tmp = heap.top();
-            cout << tmp.realV << '\n';
+            cout << heap.top().second << '\n';
             heap.pop();
         }
     }

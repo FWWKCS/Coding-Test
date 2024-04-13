@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <vector>
 #include <set>
 using namespace std;
 
@@ -8,24 +9,29 @@ int main() {
     cin.tie(0);
     cout.tie(0);
 
+    vector<bool> possible(5001, false);
+    
     set<char> S;
-    string line;
-    string N, M;
     string tmp;
+    for (int i = 1; i <= 5000; i++) {
+        tmp = to_string(i);
+        for (int k = 0; k < tmp.length(); k++) S.insert(tmp[k]);
+        if (tmp.length() == S.size()) possible[i] = true;
+        S.clear();
+    }
+
+    string line;
+    int N, M;
     while (getline(cin, line)) {
         if (line == "EOF") break;
 
-        int count = 0;
         istringstream iss(line);
         iss >> N >> M;
 
-        for (int i = stoi(N); i <= stoi(M); i++) {
-            tmp = to_string(i);
-            for (int k = 0; k < tmp.length(); k++) S.insert(tmp[k]);
-            if (S.size() == tmp.length()) count++;
-            S.clear();
+        int count = 0;
+        for (int i = N; i <= M; i++) {
+            if (possible[i]) count++;
         }
-
         cout << count << '\n';
     }
 }

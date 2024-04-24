@@ -2,11 +2,8 @@
 using namespace std;
 
 int main() {
-    long long A, B, C, x, y;
+    long long A, B, C;
     cin >> A >> B >> C;
-    
-    x = (double)A*B/C;
-    y = (double)A/B*C;
 
-    cout << (long long)max(x, y);
+    cout << (long long)max((double)A*B/C, (double)A/B*C);
 }

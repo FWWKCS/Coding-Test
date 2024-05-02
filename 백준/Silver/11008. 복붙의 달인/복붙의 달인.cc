@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 using namespace std;
 
 int main() {
@@ -8,20 +7,30 @@ int main() {
     cout.tie(0);
 
     int T; cin >> T;
-    string s, p;
-    for (int i = 0; i < T; i++) {
+    for (int v = 0; v < T; v++) {
+        string s, p;
         cin >> s >> p;
-        int count = 0;
+        int time = 0;
+
         string stack = "";
-        for (int j = 0; j < s.length(); j++) {
-            stack.push_back(s[j]);
-            if (stack.size() >= p.length() && stack.substr(stack.size()-p.length(), p.length()) == p) {
-                count++;
-                for (int x = 0; x < p.length(); x++) stack.pop_back();
+        bool match = false;
+        for (int i = 0; i < s.length(); i++) {
+            stack.push_back(s[i]);
+            if (stack.size() >= p.length() && stack.back() == p.back()) {
+                match = true;
+                for (int j = 0; j < p.length(); j++) {
+                    if (stack[stack.size()-p.size()+j] != p[j]) {
+                        match = false;
+                        break;
+                    }
+                }
+                if (match) {
+                    time++;
+                    for (int k = 0; k < p.length(); k++) stack.pop_back();
+                }
             }
         }
 
-        count += stack.size();
-        cout << count << '\n';
+        cout << time + stack.size() << '\n';    
     }
 }

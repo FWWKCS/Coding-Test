@@ -1,5 +1,5 @@
 #include <iostream>
-#include <map>
+#include <vector>
 using namespace std;
 
 int main() {
@@ -7,9 +7,8 @@ int main() {
     cin.tie(0);
     cout.tie(0);
 
-    map<int, int> relation;
     int N, M; cin >> N >> M;
-    for (int i = 1; i <= N; i++) relation[i] = 0;
+    vector<int> relation(N+1, 0);
 
     int A, B;
     for (int i = 0; i < M; i++) {
@@ -18,7 +17,7 @@ int main() {
         relation[B]++;
     }
 
-    for (auto R : relation) {
-        cout << R.second << '\n';
+    for (int i = 1; i <= N; i++) {
+        cout << relation[i] << '\n';
     }
 }

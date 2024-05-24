@@ -11,13 +11,11 @@ int main() {
     if (B % 4 != 0) rB = B / 4 + 1;
     else rB = B / 4;
 
-
     cA = A % 4;
     if (cA == 0) cA = 4;
 
     cB = B % 4;
     if (cB == 0) cB = 4;
 
-    // printf("A = %d %d, B = %d %d\n", rA, cA, rB, cB);
     cout << abs(rA - rB) + abs(cA - cB);
 }

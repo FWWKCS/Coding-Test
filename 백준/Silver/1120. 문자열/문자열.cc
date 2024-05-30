@@ -1,13 +1,8 @@
 #include <iostream>
-#include <string>
-#include <deque>
 using namespace std;
 
 int main() {
     string X, Y; cin >> X >> Y;
-
-    deque<char> deq;
-    for (int i = 0; i < X.length(); i++) deq.push_back(X[i]);
 
     int total = 50;
 

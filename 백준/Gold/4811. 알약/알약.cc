@@ -7,6 +7,10 @@ long long Cn(int n, long long C) {
 }
 
 int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
     // Catalan number
 
     vector<long long> catalan(1, 1);

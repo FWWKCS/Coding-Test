@@ -23,15 +23,6 @@ int main() {
     dp[1][1][1] = table[1][1];
     dp[1][2][2] = table[1][2];
 
-    // for (auto x : dp[1]) {
-    //     for (auto y : x) {
-    //         cout << y << ' ';
-    //     }
-    //     cout << "  |  ";
-    // }
-    // cout << '\n';
-
-
     for (int z = 2; z < N; z++) {
         for (int y = 0; y < 3; y++) { // ~y에서 색 y를 선택
             for (int x = 0; x < 3; x++) { // 시작 색깔이 x인 경우
@@ -40,14 +31,6 @@ int main() {
                 else dp[z][y][x] = min(dp[z-1][0][x], dp[z-1][1][x]) + table[z][y];
             }
         }
-
-        // for (auto x : dp[z]) {
-        //     for (auto y : x) {
-        //         cout << y << ' ';
-        //     }
-        //     cout << "  |  ";
-        // }
-        // cout << '\n';
     }
 
     // 마지막으로 R을 선택
@@ -69,13 +52,9 @@ int main() {
 
     for (auto x : dp[N]) {
         for (auto y : x) {
-            // cout << y << ' ';
             answer = min(answer, y);
         }
-        // cout << "  |  ";
     }
-    // cout << '\n';
-
 
     cout << answer;
 }

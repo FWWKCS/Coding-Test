@@ -26,28 +26,10 @@ int main() {
 
         sort(input.begin(), input.end());
 
-        if (input == x_is_zero) {
+        if (input == x_is_zero || input == x_is_one 
+         || input == y_is_zero || input == y_is_one
+         || input == z_is_zero || input == z_is_one) {
             cout << "YES\n";
-            continue;
-        }
-        else if (input == x_is_one) {
-            cout << "YES\n";
-            continue;    
-        }
-        else if (input == y_is_zero) {
-                cout << "YES\n";
-            continue;
-        }
-        else if (input == y_is_one) {
-                cout << "YES\n";
-            continue;
-        }
-        else if (input == z_is_zero) {
-                cout << "YES\n";
-            continue;
-        }
-        else if (input == z_is_one) {
-                cout << "YES\n";
             continue;
         }
         else cout << "NO\n";

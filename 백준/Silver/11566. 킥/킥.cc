@@ -31,7 +31,6 @@ int main() {
             bool found = true;
             int idx = 0;
             for (int p = k; idx < n; p+=d+1) {
-                // cout << l[p] << ' ' << t[idx] << '\n';
                 if (l[p] != t[idx]) {
                     found = false;
                     break;

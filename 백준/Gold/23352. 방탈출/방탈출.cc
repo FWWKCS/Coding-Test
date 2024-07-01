@@ -12,37 +12,32 @@ vector<int> dx = {0, 0, -1, 1};
 vector<int> dy = {-1, 1, 0, 0};
 
 void bfs(int y, int x, vector<vector<int>> &map) {
-    vector<vector<bool>> visited(N, vector<bool>(M, false));
-    visited[y][x] = true;
+    vector<vector<int>> visited(N, vector<int>(M, 0));
+    visited[y][x] = 1;
 
     int length = 0;
-    queue<vector<int>> q;
-    vector<int> e = {y, x, 1};
-    q.push(e);
+    queue<pair<int, int>> q;
+    q.push({y, x});
 
     int r, c, l, t;
     while (!q.empty()) {
-        vector<int> getter = q.front();
-        r = getter[0];
-        c = getter[1];
-        l = getter[2];
-
+        tie(r, c) = q.front();
         q.pop();
 
-        if (l > maxL) {
-            maxL = l;
+        if (visited[r][c] > maxL) {
+            maxL = visited[r][c];
             answer = map[y][x] + map[r][c];
         }
-        else if (l == maxL) answer = max(answer, map[y][x] + map[r][c]);
+        else if (visited[r][c] == maxL) answer = max(answer, map[y][x] + map[r][c]);
 
         int dr, dc;
         for (int i = 0; i < 4; i++) {
             dr = r+dy[i];
             dc = c+dx[i];
             
-            if (-1 < dr && dr < N && -1 < dc && dc < M && !visited[dr][dc] && map[dr][dc] != 0) {
-                visited[dr][dc] = true;
-                q.push({dr, dc, l+1});
+            if (-1 < dr && dr < N && -1 < dc && dc < M && visited[dr][dc] == 0 && map[dr][dc] != 0) {
+                visited[dr][dc] = visited[r][c] + 1;
+                q.push({dr, dc});
             }
         }
     }

@@ -8,26 +8,21 @@ int main() {
     cout.tie(0);
 
     int N; cin >> N;
-    vector<int> towers(1, 0);
-    int x; 
-    for (int i = 0; i < N; i++) {
-        cin >> x;
-        towers.push_back(x);
-    }
-
+    int x;
     vector<pair<int, int>> stack;
     for (int k = 1; k <= N; k++) {
-        while (!stack.empty() && stack.back().second < towers[k]){
+        cin >> x;
+        while (!stack.empty() && stack.back().second < x){
             stack.pop_back();
         }
 
         if (stack.empty()) {
             cout << 0 << ' ';
-            stack.push_back(make_pair(k, towers[k]));
+            stack.push_back(make_pair(k, x));
         }
         else {
             cout << stack.back().first << ' ';
-            stack.push_back(make_pair(k, towers[k]));
+            stack.push_back(make_pair(k, x));
         }
     }
 }

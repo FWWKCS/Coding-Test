@@ -9,18 +9,15 @@ int main() {
     cout.tie(0);
 
     int N; cin >> N;
-    vector<int>F;
     int x;
-    for (int i = 0; i < N; i++) {
-        cin >> x;
-        F.push_back(x);
-    }
 
     vector<int> answer(N, 0);
     list<int> idx;
     for (int i = N-1; i > -1; i--) idx.push_back(i);
 
-    for (int x : F) {
+    while (N) {
+        cin >> x;
+
         if (x == 1) {
             answer[idx.back()] = N;
             idx.pop_back();

@@ -1,9 +1,6 @@
 #include <iostream>
-#include <vector>
-#include <list>
+#include <deque>
 using namespace std;
-
-const int MAX = 1'000'000;
 
 int main() {
     ios::sync_with_stdio(0);
@@ -13,8 +10,8 @@ int main() {
     int N; cin >> N;
     int x;
 
-    int answer[MAX];
-    list<int> idx;
+    int answer[N];
+    deque<int> idx;
     for (int i = N-1; i > -1; i--) idx.push_back(i);
 
     for (int k = N; k > 0; k--) {
@@ -25,10 +22,12 @@ int main() {
             idx.pop_back();
         }
         else if (x == 2) {
-            list<int>::iterator cur = idx.end();
-            cur--; cur--;
-            answer[*cur] = k;
-            idx.erase(cur);
+            int top = idx.back();
+            idx.pop_back();
+            int cur = idx.back();
+            answer[cur] = k;
+            idx.pop_back();
+            idx.push_back(top);
         }
         else {
            answer[idx.front()] = k;

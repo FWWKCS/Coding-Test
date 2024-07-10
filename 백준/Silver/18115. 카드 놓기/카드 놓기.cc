@@ -3,6 +3,8 @@
 #include <list>
 using namespace std;
 
+const int MAX = 1'000'000;
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -11,31 +13,28 @@ int main() {
     int N; cin >> N;
     int x;
 
-    vector<int> answer(N, 0);
+    int answer[MAX];
     list<int> idx;
     for (int i = N-1; i > -1; i--) idx.push_back(i);
 
-    while (N) {
+    for (int k = N; k > 0; k--) {
         cin >> x;
 
         if (x == 1) {
-            answer[idx.back()] = N;
+            answer[idx.back()] = k;
             idx.pop_back();
-            N--;
         }
         else if (x == 2) {
             list<int>::iterator cur = idx.end();
             cur--; cur--;
-            answer[*cur] = N;
+            answer[*cur] = k;
             idx.erase(cur);
-            N--;
         }
         else {
-           answer[idx.front()] = N;
+           answer[idx.front()] = k;
             idx.pop_front();
-            N--; 
         }
     }
 
-    for (int v : answer) cout << v << ' ';
+    for (int i = 0; i < N; i++) cout << answer[i] << ' ';
 }

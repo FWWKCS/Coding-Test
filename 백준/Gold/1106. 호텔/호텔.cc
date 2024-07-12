@@ -27,14 +27,5 @@ int main() {
         }
     }
 
-    // for (auto r : dp) {
-    //     for (int c : r) {
-    //         if (c >= INF) cout << "INF ";
-    //         else cout << c << ' ';
-
-    //     }
-    //     cout << '\n';
-    // }
-
     cout << dp[N][C];
 }

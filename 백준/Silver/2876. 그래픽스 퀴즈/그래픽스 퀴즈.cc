@@ -34,14 +34,6 @@ int main() {
         }
     }
 
-    // for (int r = 1; r <= 5; r++) {
-    //     for (int c = 0; c < N; c++) cout << dp[r][c] << ' ';
-    //     cout << '\n';
-    // }
-
-    // for (auto a : answer) cout << a << ' ';
-    // cout << '\n';
-
     int m = 0, grade;
     for (int x = 1; x <= 5; x++) {
         if (answer[x] > m) {

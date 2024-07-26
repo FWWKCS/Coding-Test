@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #define MAX 2001
 using namespace std;
 
@@ -10,7 +9,8 @@ int main() {
     int n, m, k;
     cin >> n >> m >> k;
 
-    vector<vector<int>> white(n+1, vector<int>(m+1, 0)), black(n+1, vector<int>(m+1, 0));
+    int white[MAX][MAX] = {0, };
+    int black[MAX][MAX] = {0, };
     for (int i = 1; i <= n; i++) {
         string tmp;
         cin >> tmp;

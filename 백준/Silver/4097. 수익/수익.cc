@@ -3,6 +3,8 @@
 using namespace std;
 
 int main() {
+    FASTIO;
+    
     int N;
     while (cin >> N) {
         if (N == 0) break;

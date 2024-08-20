@@ -1,14 +1,13 @@
 #include <iostream>
 #include <vector>
-#define MAX 1'000'000
 #define MOD 1'000'000'007
 using namespace std;
 
 int main() {
     int N; cin >> N;
 
-    vector<long long> dp(MAX+1, 1);
-    vector<long long> sum(MAX+1, 0);
+    vector<long long> dp(N+1, 1);
+    vector<long long> sum(N+1, 0);
 
     dp[1] = 2;
     dp[2] = 7;

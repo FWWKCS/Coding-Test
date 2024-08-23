@@ -1,9 +1,12 @@
 #include <iostream>
 #include <vector>
+#define FASTIO ios::sync_with_stdio(0), cin.tie(0), cout.tie(0)
 #define MAX 10'000
 using namespace std;
 
 int main() {
+    FASTIO;
+    
     vector<vector<int>> dp(4, vector<int>(MAX+1, 1));
     
     // c열의 값을 만들기 위해 c-r로부터 r만큼 더해 만드는 경우

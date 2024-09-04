@@ -1,6 +1,5 @@
 #include <iostream>
-#include <map>
-#include <set>
+#include <vector>
 #define FASTIO ios::sync_with_stdio(0), cin.tie(0), cout.tie(0)
 using namespace std;
 
@@ -9,23 +8,23 @@ int main() {
 
     int T; cin >> T;
     while (T--) {
-        int N; cin >> N; N--;
-        map<int, int> rel;
-        while (N--) {
+        int N; cin >> N; 
+        vector<int> rel(N+1, -1);
+        for (int i = 0; i < N-1; i++) {
             int A, B; cin >> A >> B;
             rel[B] = A;
         }
 
         int X, Y; cin >> X >> Y;
-        set<int> visited;
+        vector<bool> visited(N+1, false);
         while (true) {
-            visited.insert(X);
-            if (rel.find(X) == rel.end()) break;
+            visited[X] = true;
+            if (rel[X] == -1) break;
             X = rel[X];
         };
 
         while (true) {
-            if (visited.find(Y) != visited.end()) {
+            if (visited[Y]) {
                 cout << Y << '\n';
                 break;
             }

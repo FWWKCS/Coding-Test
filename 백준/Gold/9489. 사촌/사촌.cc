@@ -12,14 +12,16 @@ int main() {
         if (n == 0 && k == 0) return 0;
 
         vector<int> seq(n);
-        map<int, vector<int>> ptoc;
-        map<int, int> ctop;
+        // map<int, vector<int>> ptoc;
+        // map<int, int> ctop;
         for (int i = 0; i < n; i++) {
             int x; cin >> x;
             seq[i] = x;
-
-            ptoc[x] = {};
         }
+
+        int MAX = seq[n-1];
+        vector<vector<int>> ptoc(MAX+1);
+        vector<int> ctop(MAX+1);
 
         int idx = 1;
         for (int i = 0; i < n; i++) {
@@ -36,20 +38,6 @@ int main() {
                 idx++;
             }
         }
-
-        // for (auto x : ptoc) {
-        //     cout << x.first << '\n';
-        //     for (auto v : x.second) cout << v << ' ';
-        //     cout << '\n';
-        // }
-        
-        // cout << '\n';
-
-        // for (auto x : ctop) {
-        //     cout << x.first << ' ' << x.second << '\n';
-        // }
-
-        // cout << '\n';
 
         int myP = ctop[k];
         int myGP = ctop[myP];

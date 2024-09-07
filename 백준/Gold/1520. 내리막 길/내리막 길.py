@@ -1,6 +1,6 @@
 import sys
 input = sys.stdin.readline
-
+sys.setrecursionlimit(10 ** 6) 
 
 def dfs(r,c): # (r,c)까지 갈 수 있는 경우의 수를 반환
     global memoization

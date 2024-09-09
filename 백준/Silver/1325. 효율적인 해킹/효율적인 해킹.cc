@@ -1,7 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <queue>
-#include <algorithm>
 #define FASTIO ios::sync_with_stdio(0), cin.tie(0), cout.tie(0)
 using namespace std;
 
@@ -22,15 +20,11 @@ int main() {
 
     int N, M; cin >> N >> M;
     vector<vector<int>> graph(N+1);
-    vector<int> relation(N+1, 0);
 
     for (int i = 0; i < M; i++) {
         int A, B; cin >> A >> B;
         graph[B].push_back(A);
-        relation[A]++;
     }
-
-    int minC = *min_element(relation.begin()+1, relation.end());
 
     int maxC = 0;
     vector<int> L(N+1, -1);

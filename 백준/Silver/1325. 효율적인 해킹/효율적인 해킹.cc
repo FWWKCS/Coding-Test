@@ -1,43 +1,70 @@
 #include <iostream>
 #include <vector>
-#define FASTIO ios::sync_with_stdio(0), cin.tie(0), cout.tie(0)
+#include <queue>
+#include <cstring>
+
 using namespace std;
 
-int dfs(vector<vector<int>> &graph, vector<int> &visited, int cur) {
-    visited[cur] = 1;
-    int count = 1;
-    for (auto v : graph[cur]) {
-        if (visited[v]) continue;
+int N, M;
+vector<int> v[10001];
+bool visit[10001];
+int result[10001];
+int mm = 0;
 
-        count += dfs(graph, visited, v);
+void bfs(int n) {
+    queue<int> q;
+    int count = 1;
+
+    q.push(n);
+    visit[n] = true;
+
+    while (!q.empty()) {
+        int a = q.front();
+
+        q.pop();
+
+        for (int i = 0; i < v[a].size(); i++) {
+            int na = v[a][i];
+
+            if (visit[na]) continue;
+
+            q.push(na);
+            visit[na] = true;
+            count++;
+        }
     }
 
-    return count;
+    result[n] = count;
+    mm = max(count, mm);
+}
+
+void solution() {
+    for (int i = 1; i <= N; i++) {
+        memset(visit, false, sizeof(visit));
+
+        bfs(i);
+    }
+
+    for (int i = 1; i <= N; i++) {
+        if (result[i] == mm) {
+            cout << i << " ";
+        }
+    }
 }
 
 int main() {
-    FASTIO;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
 
-    int N, M; cin >> N >> M;
-    vector<vector<int>> graph(N+1);
+    cin >> N >> M;
 
+    int a, b;
     for (int i = 0; i < M; i++) {
-        int A, B; cin >> A >> B;
-        graph[B].push_back(A);
+        cin >> a >> b;
+        v[b].push_back(a);
     }
 
-    int maxC = 0;
-    vector<int> L(N+1, -1);
-    for (int i = 1; i <= N; i++) {
-        // if (relation[i] != minC) continue;
-        
-        vector<int> visited(N+1, 0);
+    solution();
 
-        L[i] = dfs(graph, visited, i);
-        maxC = max(maxC, L[i]);
-    }
-
-    for (int i = 1; i <= N; i++) {
-        if (L[i] == maxC) cout << i << ' '; 
-    }
+    return 0;
 }

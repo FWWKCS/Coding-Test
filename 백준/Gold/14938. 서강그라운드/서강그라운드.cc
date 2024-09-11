@@ -6,22 +6,17 @@
 using namespace std;
 
 void dijkstra(vector<vector<pair<int, int>>> &graph, vector<vector<int>> &dist, int start) {
-    priority_queue<pair<int, int>> q;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
     q.push(make_pair(0, start));
-    vector<int> visited(dist.size(), 0);
-    visited[start] = 1;
 
     while (!q.empty()) {
-        int d = -q.top().first, v = q.top().second;
+        int d = q.top().first, v = q.top().second;
         q.pop();
 
         for (auto x : graph[v]) {
-            // if (visited[x.first]) continue;
-
             if (dist[start][x.first] > dist[start][v] + x.second) {
                 dist[start][x.first] = dist[start][v] + x.second;
-                q.push(make_pair(-(dist[start][v] + x.second), x.first));
-                visited[x.first] = 1;
+                q.push(make_pair(dist[start][v] + x.second, x.first));
             }
         }
     }

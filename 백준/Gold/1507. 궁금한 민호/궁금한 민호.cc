@@ -23,34 +23,23 @@ int main() {
         for (int Q = 1; Q <= N; Q++) {
             if (direct[P][Q] < MAX) continue;
 
-            bool only = true;
+            bool unique = true;
             for (int k = 1; k <= N; k++) {
                 if (P == k || Q == k) continue;
 
-                // P 와 Q가 아닌 곳(k)을 거쳐 오는 것이 직접 가는 것 보다 더 크기만하면, 무조건 다이렉트로 이동하는 간선이 존재
-                // P -> k -> Q = P -> Q 이면 k를 거치는 거치는 것이 간선을 줄임
-                if (mT[P][Q] >= mT[P][k] + mT[k][Q]) {
-                    only = false;
-                    break;
-                }
-            }
-
-            if (only) {
-                direct[P][Q] = mT[P][Q];
-                direct[Q][P] = mT[Q][P];
-                total += mT[P][Q];
-            } 
-        }
-    }
-
-    for (int k = 1; k <= N; k++) {
-        for (int P = 1; P <= N; P++) {
-            for (int Q = 1; Q <= N; Q++) {
-                direct[P][Q] = min(direct[P][Q], direct[P][k] + direct[k][Q]);
-                if (direct[P][Q] < mT[P][Q]) {
-                    cout << -1;
+                int tmp = mT[P][k] + mT[k][Q];
+                if (mT[P][Q] > tmp) {
+                    // 중간을 거쳐가는 경우가 다이렉트보다 더 적게 걸리면 모순
+                    cout << -1; 
                     return 0;
                 }
+                // 중간을 거치는 경우에도 최단 시간이라면 해당 경로를 이용하여 필요 간선을 줄임
+                else if (mT[P][Q] == tmp) unique = false;     
+            }
+            
+            if (unique) {
+                direct[P][Q] = direct[Q][P] = mT[P][Q];
+                total += mT[P][Q];
             }
         }
     }

@@ -29,8 +29,6 @@ int main() {
 
                 // P 와 Q가 아닌 곳(k)을 거쳐 오는 것이 직접 가는 것 보다 더 크기만하면, 무조건 다이렉트로 이동하는 간선이 존재
                 // P -> k -> Q = P -> Q 이면 k를 거치는 거치는 것이 간선을 줄임
-
-                // cout << P << ' ' << k << ' ' << Q << " | " << mT[P][Q] << ' ' << mT[P][k] + mT[k][Q] << '\n';
                 if (mT[P][Q] >= mT[P][k] + mT[k][Q]) {
                     only = false;
                     break;
@@ -45,12 +43,6 @@ int main() {
         }
     }
 
-    // for (auto r : direct) {
-    //     for (auto c : r) cout << c << ' ';
-    //     cout << '\n';
-    // }
-    // cout << '\n';
-    
     for (int k = 1; k <= N; k++) {
         for (int P = 1; P <= N; P++) {
             for (int Q = 1; Q <= N; Q++) {
@@ -62,12 +54,6 @@ int main() {
             }
         }
     }
-
-    // cout << '\n';
-    // for (auto r : direct) {
-    //     for (auto c : r) cout << c << ' ';
-    //     cout << '\n';
-    // }
 
     cout << total;
 }

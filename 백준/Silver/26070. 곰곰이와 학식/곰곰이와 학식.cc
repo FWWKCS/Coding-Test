@@ -42,8 +42,6 @@ int main() {
         C = 0;
     }
 
-    // printf("%d %d %d\n%d %d %d\n%d\n",A, B, C, X, Y, Z, total);
-
 
     ll q;
     // case 1. A -> B
@@ -93,8 +91,6 @@ int main() {
         total += q;
         Z -= q * 9;
     }
-
-    // printf("%d %d %d\n%d %d %d\n",A, B, C, X, Y, Z);
 
     cout << total;
 }

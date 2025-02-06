@@ -26,19 +26,13 @@ int main() {
                     cout << 0 << '\n';
                     return 0;
                  }
-                else {
-                    if (r > 0 && field[r-1][c] == '.') field[r-1][c] = 'D';
-                    if (r < R-1 && field[r+1][c] == '.') field[r+1][c] = 'D';
-                    if (c > 0 && field[r][c-1] == '.') field[r][c-1] = 'D';
-                    if (c < C-1 && field[r][c+1] == '.') field[r][c+1] = 'D';                
-                }
             }
         }
     }
 
     cout << 1 << '\n';
     for (auto v : field) {
-        for (auto c : v) cout << c;
+        for (auto c : v) cout << ((c == '.') ? 'D' : c);
         cout << '\n';
     }
 }

@@ -1,59 +1,48 @@
 #include <iostream>
-#include <vector>
+#include <stack>
+#include <algorithm>
 #include <string>
 using namespace std;
 
 string S;
-int idx = 0;
-int top = 0;
-vector<int> stack;
+stack<int> st;
 
 int main() {
     cin >> S;
+    reverse(S.begin(), S.end());
 
-    while (idx < S.length()) {
-        if (S[idx] == 'x') {
-            stack.push_back(0);
-            top++;
-            idx++;
+    for (char c : S) {
+        if (c == 'x') {
+            st.push(0);
         }
 
-        else if (S[idx] == 'g') {
-            stack.push_back(-2);
-            top++;
-            idx++;
-        }
-
-        else if (S[idx] == 'f') {
-            stack.push_back(-3);
-            top++;
-            idx++;
-        }
-
-        while (true) {
-            // g
-            if (top-2 >= 0 && stack.back() >= 0 && stack[top-2] == -2) {
-                int value = stack.back();
-                stack.pop_back();
-                stack.pop_back();
-                stack.push_back(value+1);
-                top--;
-            }
-    
-            // f
-            else if (top-3 >= 0 && stack[top-2] >= 0 && stack[top-1] >= 0 && stack[top-3] == -3) {
-                int s = stack[top-2], t = stack[top-1];
-                stack.pop_back();
-                stack.pop_back();
-                stack.pop_back();
-                stack.push_back(min(s, t));
-                top -= 2;
+        else if (c == 'g') {
+            if (st.empty()) {
+                cout << -1;
+                return 0;
             }
 
-            else break;
+            int s = st.top();
+            st.pop();
+            st.push(s+1);
+        }
+
+        else if (c == 'f') {
+            if (st.size() < 2) {
+                cout << -1;
+                return 0;
+            }
+
+            int s = st.top();
+            st.pop();
+
+            int t = st.top();
+            st.pop();
+
+            st.push(min(s, t));
         }
     }
 
-    if (stack.size() != 1 || stack.back() < 0) cout << -1;
-    else cout << stack.back();
+    if (st.size() != 1) cout << -1;
+    else cout << st.top();
 }

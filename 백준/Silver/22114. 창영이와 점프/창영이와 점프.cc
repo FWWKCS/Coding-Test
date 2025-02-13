@@ -6,6 +6,8 @@ using namespace std;
 int N, K;
 
 int main() {
+    FASTIO;
+    
     cin >> N >> K;
     int block[N] = {0};
     vector<vector<int>> dp(2, vector<int>(N, 1));

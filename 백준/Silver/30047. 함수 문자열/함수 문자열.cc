@@ -2,12 +2,15 @@
 #include <stack>
 #include <algorithm>
 #include <string>
+#define FASTIO ios::sync_with_stdio(0), cin.tie(0), cout.tie(0)
 using namespace std;
 
 string S;
 stack<int> st;
 
 int main() {
+    FASTIO;
+    
     cin >> S;
     reverse(S.begin(), S.end());
 

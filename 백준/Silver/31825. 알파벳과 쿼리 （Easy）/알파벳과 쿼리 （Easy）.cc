@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#define FASTIO ios::sync_with_stdio(0), cin.tie(0), cout.tie(0)
 using namespace std;
 
 string str;
@@ -25,6 +27,8 @@ void mode2(int l, int r) {
 }
 
 int main() {
+    FASTIO;
+    
     int N, Q; cin >> N >> Q;
     cin >> str;
     while (Q--) {

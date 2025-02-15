@@ -6,30 +6,29 @@ using namespace std;
 int T; 
 int N, M;
 
-vector<vector<int>> dp(21, vector<int>(10'001, 0));
-
-vector<int> coins(21);
+vector<int> dp;
+vector<int> coins;
 
 int main() {
+    FASTIO;
+
     cin >> T;
     while (T--) {
         cin >> N;
-        for (int i = 1; i <= N; i++) 
-            cin >> coins[i];
-
+        coins.resize(N);
+        for (auto &x : coins) cin >> x;
+        
         cin >> M;
-        for (int r = 1; r <= N; r++) {
-            for (int c = 0; c <= M; c++) {
-                if (!c) {
-                    dp[r][c] = 1;
-                    continue;
-                }
+        dp.clear();
+        dp.resize(M+1, 0);
+        dp[0] = 1;
 
-                if (c >= coins[r]) dp[r][c] = dp[r-1][c] + dp[r][c-coins[r]];
-                else dp[r][c] = dp[r-1][c];
+        for (int v = 0; v < N; v++) {
+            for (int k = coins[v]; k <= M; k++) {
+                dp[k] += dp[k-coins[v]];
             }
         }
 
-        cout << dp[N][M] << '\n';
+        cout << dp[M] << '\n';
     }
 }

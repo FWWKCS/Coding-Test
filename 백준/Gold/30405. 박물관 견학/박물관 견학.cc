@@ -5,6 +5,8 @@
 using namespace std;
 
 int main() {
+    FASTIO;
+    
     vector<int> pos;
 
     int N, M; cin >> N >> M;

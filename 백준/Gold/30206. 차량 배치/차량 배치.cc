@@ -1,15 +1,15 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <map>
+#define MAX 200'000
 #define MOD 1'000'000'007
 #define FASTIO ios::sync_with_stdio(0), cin.tie(0)
 using namespace std;
 using ll = long long;
 
 int N, M;
-map<int, vector<int>> graph;
-map<int, int> level;
+vector<int> graph[MAX+1];
+vector<int> level(MAX, 0);
 ll answer = 2;
 
 void bfs() {
@@ -39,17 +39,14 @@ int main() {
     cin >> N >> M;
     while (M--) {
         int a, b; cin >> a >> b;
-        if (graph.find(a) != graph.end()) graph[a].push_back(b);
-        else graph[a] = {b};
-
-        if (graph.find(b) != graph.end()) graph[b].push_back(a);
-        else graph[b] = {a};
+        graph[a].push_back(b);
+        graph[b].push_back(a);
     }
 
     bfs();
 
     for (auto l : level) {
-        answer = (answer * (l.second + 1)) % MOD;
+        answer = (answer * (l + 1)) % MOD;
     }
 
     cout << answer - 1;

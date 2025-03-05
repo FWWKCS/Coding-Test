@@ -36,8 +36,6 @@ int main() {
         a4 = 0;
     }
 
-    // cout << a8 << ' ' << a4 << ' ' << a1 << '\n';
-
     ll press = 0;
     if (a8 > 0) press++;
     if (a4 > 0) press++;

@@ -1,27 +1,27 @@
 #include <iostream>
-#include <math.h>
 using namespace std;
-using ld = long double;
 using ll = long long;
 
-int main() {
-    ld n, k; cin >> n >> k;
+ll n, k;
 
-    // 실근 체크
-    ld C = k - (n + 1);
-    if (n*n - 4*C < 0) {
-        cout << "NO";
-        return 0;
-    } 
-
-    // 근이 정수인지 체크 (2의 배수)
-    ld s1 = n - (ld)sqrt(n*n - 4*C);
-    ld s2 = n + (ld)sqrt(n*n - 4*C);
-
-    if ((s1 >= 0 && s1 == (ll)s1 && (ll)s1 % 2 == 0) 
-     || (s2 >= 0 && s2 == (ll)s2 && (ll)s2 % 2 == 0)) {
-        cout << "YES";
-    } else {
-        cout << "NO";
+ll binSearch() {
+    ll C = k - (n+1);
+    ll s = 0, e = n;
+    ll res;
+    while (s <= e) {
+        ll y = (s + e) / 2;
+        ll x = n - y;
+        if (y * x == C) return y;
+        else if (y * x < C) s = y + 1;
+        else e = y - 1;
     }
+
+    return -1;
+}
+
+int main() {
+    cin >> n >> k;
+
+    // x+y = n 이고, xy = k-(n+1) 인 x나 y중 하나를 탐색
+    cout << (binSearch() == -1 ? "NO" : "YES");
 }

@@ -7,7 +7,6 @@ ll n, k;
 ll binSearch() {
     ll C = k - (n+1);
     ll s = 0, e = n;
-    ll res;
     while (s <= e) {
         ll y = (s + e) / 2;
         ll x = n - y;

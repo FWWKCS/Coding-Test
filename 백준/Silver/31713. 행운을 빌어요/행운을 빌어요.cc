@@ -8,23 +8,12 @@ int main() {
     int T; cin >> T;
     while (T--) {
         int A, B; cin >> A >> B;
-        int p = 0, q = 0;
+        int answer = 1e9;
 
-        bool found = false;
-        while (true) {
-            for (int x = (B+q)/4; x > -1; x--) {
-                int y = (B+q)-(4*x);
-                if (y % 3 == 0 && x+(y/3) >= A) {
-                    p = x+(y/3);
-                    found = true;
-                    break;
-                }
-            }
-
-            if (found) break;
-            q++;
-        }   
-
-        cout << p+q-A << '\n';
+        for (int k = A; k <= 1000; k++) {
+            if (B > 4*k) continue;
+            answer = min(answer, (k-A)+max(3*k-B, 0));
+        }
+        cout << answer << '\n';
     }
 }

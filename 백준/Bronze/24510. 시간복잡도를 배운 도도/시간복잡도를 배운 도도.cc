@@ -1,4 +1,5 @@
 #include <iostream>
+#define FASTIO ios::sync_with_stdio(0), cin.tie(0)
 using namespace std;
 
 int find(string s, string t) {
@@ -24,6 +25,8 @@ int find(string s, string t) {
 }
 
 int main() {
+    FASTIO;
+
     int C; cin >> C;
     int answer = 0;
     while (C--) {
